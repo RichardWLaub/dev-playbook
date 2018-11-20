@@ -1,0 +1,21 @@
+---
+- name: Ensure local development is ready
+  hosts: all
+  tasks:
+    - name: Install apt packages
+      apt: name={{item}} state=present
+      with_items:
+        - ansible
+        - docker.io
+        - git
+        - npm
+        - silversearcher-ag
+        - stow
+        - tmux
+        - tree
+        - yamllint
+
+    - name: Install npm packages
+      npm: name={{item}} global=yes
+      with_items:
+        - typescript
